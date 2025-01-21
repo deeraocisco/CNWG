@@ -47,9 +47,30 @@ Feedback: {{Why is this wrong?}}
  - Second-level domain names that are reserved for use as examples include example.com, example.org, and example.net.
    
 7. **Compliance with Safe Addresses:** 
- - Check if IP addresses or domain names used are those reserved for use in technical content, as per RFC 5737, RFC 3330,RFC 1918,RFC 1112, RFC 3849.
- - Safe IPv4 Addresses: 192.0.2.0/24, 198.51.100.0/24, 203.0.113.0/24, 209.165.200.224/27, 209.165.201.0/27, 209.165.202.128/27, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 127.0.0.1, 224.0.0.0/8 to 239.0.0.0/8, 169.254.0.0/16.
- - Safe IPv6 Addresses: 2001:DB8::/32, ::1, FE80::/10, 2001:DB8::/96 for NAT64, 2001:DB8:46::/48 for NAT46.
+ **Compliance with Safe Addresses:** 
+ - For IPv4 unicast addresses, check that they are from one of these reserved blocks:
+   Block 1: 192.0.2.0/24 (from 192.0.2.1 to 192.0.2.254);  Broadcast Address - 192.0.2.255; Subnet Mask - 255.255.255.0
+   Block 2: 198.51.100.0/24 (from 198.51.100.1 to 198.51.100.254); Broadcast Address - 198.51.100.255 ; Subnet Mask - 255.255.255.0
+   Block 3: 203.0.113.0/24 (from 203.0.113.1 to 203.0.113.254); Broadcast Address - 203.0.113.255 ; Subnet Mask - 255.255.255.0
+   Block 4: 209.165.200.224/27 (from 209.165.200.225 to 209.165.200.254); Broadcast Address - 209.165.200.255 ; Subnet Mask - 255.255.255.224
+   Block 4: 209.165.201.0/27 (from 209.165.201.1 to 209.165.201.30); Broadcast Address - 209.165.201.31 ; Subnet Mask - 255.255.255.224
+   Block 5: 209.165.202.128/27 (from 209.165.202.129 to 209.165.202.158); Broadcast Address -  209.165.202.159 ; Subnet Mask - 255.255.255.224
+- For private IPv4 addresses which are never assigned publicly and are not routed through the public internet,check that they are from one of these reserved blocks:
+   Block 1: 10.0.0.0/8 (from 10.0.0.1 to 10.255.255.254); Broadcast Address - 10.255.255.255; Subnet Mask - 255.0.0.0
+   Block 2: 172.16.0.0/12 (from 172.16.0.1 to 172.31.255.254); Broadcast Address - 172.31.255.255; Subnet Mask - 255.0.0.0
+   Block 3: 192.168.0.0/16 (from 192.168.0.1 to 192.168.255.254); Broadcast Address - 192.168.255.255; Subnet Mask - 255.0.0.0
+- Check that addresses in this range are not used: 169.254.0.0 through 169.254.255.255. This range is not Cisco-recommended.
+- For IPv4 loopback or localhost address, use IP address 127.0.0.1 and the name 'localhost' to the loopback interface that allows a client and server on the same host to communicate with each other over TCP/IP.
+- For IPv4 multicast group addresses, check that they are from this range 224.0.0.0/8 to 239.0.0.0/8.
+- For IPv4 link-local addresses, all IPv4 link-local addresses are compliant. The IPv4 link-local prefix is 169.254.0.0/16.
+- For the IPv6 address prefix, check that the prefix is from this block: 2001:DB8::/32.
+- For IPv6 network prefix 2001:DB8::/32, the IPv6 address can be from this range:2001:DB8::1 to 2001:DB8:FFFF:FFFF:FFFF:FFFE:FFFF:FFFF.  Example: 2001:DB8:1::1.
+- For IPv6 network prefix 2001:DB8::/48, the IPv6 address can be from this range:  2001:DB8:0000:0000:0000:0000:0000:0001 through 2001:DB8:FFFF:0000:0000:0000:0001 to 2001:DB8:0000:FFFF:FFFF:FFFF:FFFF:FFFF through 2001:DB8:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF
+- For IPv6 loopback or localhost Address, use IPv6 address 0:0:0:0:0:0:0:1 and the name 'localhost' to the loopback interface that allows a client and server on the same host to communicate with each other over TCP/IP. Use the IPv6 localhost address, abbreviated as "::1" in Cisco technical content.
+- For IPv6 multicast addresses, check that they start with FF00.
+- For IPv6 link-local addresses, all IPv6 link-local addresses are compliant. It is acceptable to use link-local addresses starting with FE80::/10.
+- When writing 6to4, you can use the 2002::/16 prefix.
+- When writing a unique local address (ULA), you can use FC00::/7.
 
 8. **OEM Guidelines:**
  - Use generic references instead of specific Cisco ones when possible.
